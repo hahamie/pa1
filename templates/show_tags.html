@@ -1,0 +1,32 @@
+
+<head>
+    <title>Album</title>
+</head>
+<body>
+    <div class="title">
+        <h1>{{message}}</h1>
+    </div>
+    <div id="content">
+        {% if login %}
+            <p><a href='/my_tag'>View my tags</a></p>
+        {% endif %}
+        <form method="post" action="{{ url_for('tags') }}">
+            <label for="search">Search photos by tag</label>
+            <input type="text" name="search" /><br />
+            <input type="submit" value="Search" name="submit"/>
+        </form>
+        <p>Popular tag</p>
+            {% for tag in pt %}
+                <p><a href='{{url_for('tagPhotos',tag_name = tag[0])}}'>{{tag[0]}}</a>: {{tag[1]}}
+                </p>
+            {% endfor %}
+        <p>Tag list</p>
+                    {% for tag in tags %}
+                        <p><a href='{{url_for('tagPhotos',tag_name = tag[0])}}'>{{tag[0]}}</a>
+                        </p>
+                    {% endfor %}
+
+    </div>
+</body>
+<a href='/tag'>Go to all tags</a><br />
+<a href='/'>Home</a>

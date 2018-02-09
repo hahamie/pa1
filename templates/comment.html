@@ -1,0 +1,20 @@
+
+<head>
+    <title>Comment</title>
+</head>
+<body>
+    <div class="title">
+        <h1>comment</h1>
+    </div>
+    <div id="content">
+        <p>Album list</p>
+            <img src="{{ url_for('static', filename= pid + '.jpg') }}" width="300" height="300"><br />
+            <p>caption: {{photo[1]}}</p>
+            {% for comment in comments %}
+                <p>{{ comment[0] }}</p>
+            {% endfor %}
+    </div>
+</body>
+<a href='/show_photos'>View all photos</a><br />
+<a href='/album'>View all albums</a><br />
+<a href='/'>Home</a>

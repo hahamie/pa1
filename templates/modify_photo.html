@@ -1,0 +1,16 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<head>
+    <title>Modify photo!</title>
+</head>
+    <body>
+        <div class="title">
+            <h1>Modify a photo</h1>
+        </div>
+            <form method="post" enctype="multipart/form-data" action="{{ url_for('modify_photo',p_pid = pid) }}">
+                <label for="caption">Caption:</label>
+                <input type="text" name="caption" required='true' /><br />
+                <input type="submit" value="Modify" />
+                <input type="reset">
+            </form>
+    </body>
+<a href='/my_photos'>My photo Home</a>

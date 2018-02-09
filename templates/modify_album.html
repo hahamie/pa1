@@ -1,0 +1,21 @@
+{% if message %}
+  <h4>{{message}}!</h4>
+{% else %}
+    <head>
+        <title>Modify an album!</title>
+    </head>
+{% endif %}
+    <body>
+        <div class="title">
+            <p>Modify Album</p>
+        </div>
+        <div id="content">
+            <form method="post" action="{{ url_for('modify_album',a_aid = aid) }}">
+                <label for="name">Album name</label>
+                <input type="text" name="name" /><br />
+                <input type="submit" />
+                <input type="reset">
+            </form>
+         </div>
+    </body>
+<a href='/album'>Album Home</a>

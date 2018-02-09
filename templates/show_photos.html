@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+
+<h2>{{ message }}</h2>
+    <ul>
+    {% if view %}
+        <p><a href='/my_photos'>View own photos </a></p>
+    {% endif %}
+
+    {% if login %}
+        <p><a href='/upload'>Upload photos </a></p>
+    {% endif %}
+        {% for photo in photos %}
+            <p>
+                <img src="{{ url_for('static', filename= photo[2] + '.jpg') }}" width="300" height="300"><br />
+                caption: {{photo[1]}}<br />
+
+                <p><a href='{{url_for('comment',p_pid = photo[0])}}'>Comment</a>
+                    <a href='{{url_for('like',p_pid = photo[0])}}'>Likes</a></p>
+                {% if com %}
+                    <form method="post" enctype="multipart/form-data" action="{{ url_for('show_Photos',p_pid = photo[0]) }}">
+                        <label for="comment">Leave comment:</label>
+                        <input type="text" name="comment"/>
+                        <input type="submit" value="Comment" name="submit"/>
+                        <input type="submit" value="Like" name="submit"/>
+                    </form>
+                {% endif %}
+            </p>
+        {% endfor %}
+        {% if modify %}
+                <input type="submit" value="Delete" name="submit"/>
+                <input type="submit" value="Modify" name="submit"/>
+        {% endif %}
+
+        {% if maylike %}
+            <p>You may also like</p>
+            {% for photo in maylike %}
+                <img src="{{ url_for('static', filename= photo[3] + '.jpg') }}" width="300" height="300"/><br />
+                caption: {{photo[1]}}<br />
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+</body>
+{% if modify %}
+    <a href='/show_photos'>View all photos</a><br />
+    <a href='/my_album'>Go to my Album</a><br />
+{% endif %}
+<a href='/album'>Go to all Album</a><br />
+<a href='/'>Home</a>
+</html>

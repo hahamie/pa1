@@ -1,0 +1,21 @@
+
+<head>
+        <title>Like</title>
+</head>
+<body>
+    <div class="title">
+        <h1>Likes</h1>
+    </div>
+    <div id="content">
+        <p>Like list</p>
+            <img src="{{ url_for('static', filename= pid + '.jpg') }}" width="300" height="300"><br />
+            <p>caption: {{photo[1]}}</p>
+            <p>Likes: {{num[0]}}</p>
+            {% for name in names %}
+                <p>{{ name }}</p>
+            {% endfor %}
+    </div>
+</body>
+<a href='/show_photos'>View all photos</a><br />
+<a href='/album'>View all albums</a><br />
+<a href='/'>Home</a>

@@ -1,0 +1,36 @@
+
+<head>
+    <title>Album</title>
+</head>
+<body>
+    <div class="title">
+        <h4>{{message}}</h4>
+    </div>
+    <div id="content">
+        {% if view %}
+            <p><a href='/my_album'>View own album</a></p>
+        {% endif %}
+        {% if login %}
+            <p><a href='/create_album'>Create new Album</a></p>
+        {% endif %}
+        <p>Album list</p>
+                <form method="post" enctype="multipart/form-data" action="/album">
+                    {% for album in albums %}
+                        <p><a href='{{url_for('albumPhotos',a_name = album[0],a_aid = album[1])}}'>{{album[0]}}</a>
+                            {% if modify %}
+                                <input type="checkbox" name="list" value={{album[1]}}>
+                            {% endif %}
+                        </p>
+                    {% endfor %}
+                    {% if modify %}
+                        <input type="submit" value="Modify" name="submit"/>
+                        <input type="submit" value="Delete" name="submit"/>
+                    {% endif %}
+                </form>
+    </div>
+</body>
+{% if modify %}
+    <a href='/show_photos'>View all photos</a><br />
+    <a href='/album'>View all albums</a><br />
+{% endif %}
+<a href='/'>Home</a>

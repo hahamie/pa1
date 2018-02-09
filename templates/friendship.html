@@ -1,0 +1,24 @@
+<head>
+    <meta charset="UTF-8">
+    <title>FriendList</title>
+
+</head>
+<body>
+    <div class="title">
+            <h1>FriendList</h1>
+    </div>
+            {% if datas %}
+            <ul>
+                {% for data in datas %}
+                    <p>Emails:{{data[0]}}</p>
+                    <p>FirstName:{{ data[1] }}</p>
+                    <p><br /></p>
+                {% endfor %}
+
+            </ul>
+            {% endif %}
+
+    <li><a href='/addFriends'>Add other friends</a> </li>
+    <li><a href='/'>Home</a></li>
+</body>
+</html>

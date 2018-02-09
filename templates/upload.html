@@ -1,0 +1,24 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<head>
+    <title>Upload a photo!</title>
+</head>
+    <body>
+        <div class="title">
+            <h1>Upload a photo to Photoshare</h1>
+        </div>
+            <form method="post" enctype="multipart/form-data" action="/upload">
+                <label for="photo">Select photo:</label>
+                <input type="file" name = "photo" required='true' /><br />
+                <label for="caption">Caption:</label>
+                <input type="text" name="caption" required='true' /><br />
+                <label for="tag">Enter tag(begin with # and seperate by blankspace):</label>
+                <input type="text" name="tag"/><br />
+                <label for="album">Select album:</label>
+                <select name="album">
+                    {% for album in albums %}
+                        <option value= {{album[1]}} >{{album[0]}}</option>
+                    {% endfor %}
+                </select><br />
+                <input type="submit" value="Upload" />
+            </form>
+    </body>

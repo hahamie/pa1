@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AddFriends</title>
+</head>
+{%if not supress%}
+<h1> User is not exist or the user is already your friend</h1>
+{% endif %}
+<body>
+        <div class="title">
+            <h1>Type email address of your friend</h1>
+        </div>
+        <div id="content">
+            <form method="post" action="{{url_for('addFriends')}}">
+                <label for="email">Email:</label>
+                <input type="email" name="email" /><br />
+                <input type="submit" value = "Submit", name="submit"/>
+                <input type="reset">
+                {% if name %}
+                    <p>Email:</p>
+                    <p>{{name}}</p>
+                    <p>First Name: {{FNAME}}</p>
+                    <p>Last Name: {{LNAME}}</p>
+                    <p><a href='{{url_for('upload_friendlist2',email2 = name)}}'>Add</a ></p>
+
+                {% endif %}
+            </form>
+         </div>
+        <h1>Recommend:</h1>
+        {% if datas %}
+            {% for data in datas %}
+                <p>Email: {{data[0]}}</p>
+                <p>First Name: {{data[1]}}</p>
+                <p>Last Name: {{data[2]}}</p>
+                <p><a href='{{url_for('upload_friendlist2',email2 = data[0])}}'>Add</a ></p>
+            {% endfor %}
+        {% endif %}
+        <li><a href='/'>Home</a></li>
+</body>
+</html>

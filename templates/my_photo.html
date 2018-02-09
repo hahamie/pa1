@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+
+<h2>{{ message }}</h2>
+    <ul>
+    {% if view %}
+        <p><a href='/my_photos'>View own photos </a></p>
+    {% endif %}
+
+    {% if login %}
+        <p><a href='/upload'>Upload photos </a></p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data" action="/my_photos">
+        {% for photo in photos %}
+            <p>
+                {% if modify %}
+                    <input type="checkbox" name="l" value={{photo[0]}}>
+                {% endif %}
+                <img src="{{ url_for('static', filename= photo[2] + '.jpg') }}" width="300" height="300"><br />
+                caption: {{photo[1]}}<br />
+
+                <p><a href='{{url_for('comment',p_pid = photo[0])}}'>Comment</a>
+                    <a href='{{url_for('like',p_pid = photo[0])}}'>Likes</a></p>
+            </p>
+        {% endfor %}
+        {% if modify %}
+                <input type="submit" value="Delete" name="submit"/>
+                <input type="submit" value="Modify" name="submit"/>
+        {% endif %}
+    </form>
+    </ul>
+
+</body>
+{% if modify %}
+    <a href='/show_photos'>View all photos</a><br />
+    <a href='/my_album'>Go to my Album</a><br />
+{% endif %}
+<a href='/album'>Go to all Album</a><br />
+<a href='/'>Home</a>
+</html>

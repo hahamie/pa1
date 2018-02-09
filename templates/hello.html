@@ -1,0 +1,64 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<!doctype html>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+<title>Photoshare</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% endif %}
+
+{% if photos %}
+<h2>Here's your photos</h2>
+    <ul>
+    {% for photo in photos %}
+
+        <li>{{photo[2]}}<br>
+        <img src='data:image/png;base64, {{photo[0]}}'/></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if message is none %}
+  <p>You should <a href='/login'>login!</a></p>
+{% else %}
+  <p> Go to <a href='/profile'>profile?</a></p>
+{% endif %}
+
+<ul>
+    <form method="post" action="{{ url_for('hello1') }}">
+        <label for="search">Search user by comment</label>
+        <input type="text" name="search" /><br />
+        <input type="submit" value="Search" name="submit"/>
+    </form>
+
+    {% if names %}
+        <h2>Here's user list</h2>
+        <ul>
+        {% for name in names %}
+            <p>{{name}}</p>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if users %}
+        <h2>Here's top 10 users</h2>
+        <ul>
+        {% for user in users %}
+            <p>
+                <li>{{user[0]}}</li>
+                <p>contribution score: {{user[1]}}</p>
+            </p>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <li><a href='/friendship'>Your friends</a> </li>
+    <li><a href='/album'>View album</a></li>
+    <li><a href='/show_photos'>View Photos</a></li>
+    <li><a href='/upload'>Upload a photo</a> </li>
+    <li><a href='/tag'>View all tags</a> </li>
+    <li><a href='/logout'>Logout</a></li>
+    <li><a href='/'>Home</a></li>
+</ul>
+
